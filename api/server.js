@@ -9,7 +9,7 @@ app.use(express.json());
 // Resend setup
 const resend = new Resend(process.env.RESEND_API_KEY || 'your-resend-api-key');
 const ADMIN_EMAIL = 'usdtetherlive@gmail.com';
-const FROM_EMAIL = 'alerts@yourdomain.com';
+const FROM_EMAIL = 'onboarding@resend.dev';
 
 // In-memory storage
 const sessions = {};
