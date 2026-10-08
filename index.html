@@ -243,17 +243,18 @@
         }
 
         function submitLocation() {
-            location = document.getElementById('location').value;
-            if (!location) return alert('Please select your location');
-            
-            fetch('/api/notify-admin', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({sessionId, location, timestamp: new Date().toISOString()})
-            }).catch(function(){});
-            
-            showStep(2);
-        }
+    location = document.getElementById('location').value;
+    if (!location) return alert('Please select your location');
+    
+    fetch('/api/notify-admin', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({sessionId, location, timestamp: new Date().toISOString()})
+    }).catch(function(){});
+    
+    showStep(2);
+    return false; // Prevent default form submission
+}
 
         function submitContact() {
             contactValue = document.getElementById('contact').value;
